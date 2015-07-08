@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<!-- <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"> -->
+		<title>Checklist</title>
+		<link rel="stylesheet" href="stylesheet.css" type="text/css">
+		<link rel="stylesheet" href="marka.min.css">
+        <script src="js/marka.min.js"></script>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<meta content="Fabricio Di Salvo" name="author">
+	</head>
+	<body>
+		<header><br>TERUMO BCT LATAM<br></header>
+		<!-- <a href="Home.html" style="text-decoration: none;"> -->
+		<h2 style="color: black;">Month End Checklist<br>
+		<i id="MainIcon"></i></h2>
+		<!-- </a> -->
+	<div class="flex-center"></div>
+
+
+<div class="task">
+<div class="task-category">DAY TO DAY: </div><div class="task-title"> Employee Expenses Reports</div>
+<div class="task-description">Tarjetas Corporativas y Expense Reports de mes anterior.</div>
+<i id="icon" onclick="changeStatus()"></i><div id="statustext" style="display: inline-block;">Not started</div>
+</div>
+<div class="task">
+<div class="task-category">DAY TO DAY: </div><div class="task-title"> Tax Advances</div>
+<div class="task-description">Anticipos impositivos del corriente mes.</div>
+<i id="icon" onclick="changeStatus()"></i><div id="statustext" style="display: inline-block;">Not started</div>
+</div>
+
+
+<script>
+	var m = new Marka('#icon');
+	m.set('square-o-times')
+	    .color('#FF0000')
+	    .size('50');
+</script>	    
+<script>
+	function changeStatus() {
+	    document.getElementById("statustext").innerHTML = "Completed";
+	    document.getElementById('icon').id = 'icon2';
+			m.set('square-o-check')
+				.color('#1A805B');
+	}
+</script>
+<script>
+	var mainicon = new Marka('#MainIcon');
+		mainicon.set('square-o-check')
+		.color('#1A805B')
+	    .size('50');
+</script>
+
+ <!-- MAIN con Not Started, Completed:
+<script>
+	var mainicon = new Marka('#MainIcon');
+	mainicon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('60');
+		setTimeout(function() {
+		    mainicon.set('square-o-minus')
+		    .color('#FFB600');
+		}, 2000);
+		setTimeout(function() {
+		    mainicon.set('square-o-check')
+		    .color('#1A805B');
+		}, 4000);
+</script>
+ -->
+<!-- MAIN con Not Started, In Progress, Completed: 
+<script>
+	var mainicon = new Marka('#MainIcon');
+	mainicon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('60');
+		setTimeout(function() {
+		    mainicon.set('square-o-minus')
+		    .color('#FFB600');
+		}, 2000);
+		setTimeout(function() {
+		    mainicon.set('square-o-check')
+		    .color('#1A805B');
+		}, 4000);
+</script>
+ -->
+</body></html>
