@@ -30,6 +30,14 @@ h2 {
   font-family: Cambria;
   text-align: center;
 }
+h3 {
+  text-transform: none;
+  font-size: 24pt;
+  font-weight: normal;
+  font-style: normal;
+  font-family: Cambria;
+  text-align: center;
+}
 .container {
   max-width: 831px;
   margin: 0 auto;
@@ -157,51 +165,75 @@ h2 {
 }
 #icon {
   cursor: pointer;
-  border: 1px solid green;
+  width: 5%;
+  background-color: #FFF;
+  display: inline-block;
+  margin-top: 10px;
 }
-#statustext {
+.statustext {
   text-transform: none;
-  font-size: 16pt;
+  font-size: 12pt;
   font-weight: normal;
   font-style: normal;
   font-family: Cambria;
-  text-align: center;
-  vertical-align: middle;
-/*  padding-bottom: 13px;*/
+  width: 10%;
+  padding-bottom: 6px;
   display: inline-block;
-  border: 1px solid green;
+  margin-top: 5px;
 }
 .task-container {
-  max-width: 901px;
+  max-width: 1010px;
   margin: 0 auto;
-  border: 1px solid green;
+  border: 1px solid black;
 }
 .task {
-  max-width: 900px;
+  max-width: 1005px;
+  height: 60px;
   margin: 0 auto;
-  border: 1px solid green;
 }
 .task-category {
   font-size: 14pt;
   font-family: Cambria;
   font-weight: bold;
-  width: 125px;
+  width: 120px;
   display: inline-block;
-  border: 1px solid green;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .task-title {
   font-size: 14pt;
   font-family: Cambria;
-  width: 225px;
+  width: 25%;
   display: inline-block;
-  border: 1px solid green;
+  margin-left: 10px;
 }
 .task-description {
   font-size: 12pt;
   font-family: Cambria;
-  width: 350px;
   display: inline-block;
-  border: 1px solid green;
+  width: 45%;
+  margin-left: 10px;
 }
-
-
+.task .category {
+  font-size: 14pt;
+  font-family: Cambria;
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.task .title {
+  font-size: 14pt;
+  font-family: Cambria;
+  width: 25%;
+  display: inline-block;
+  margin-left: 10px;
+}
+.task .description {
+  font-size: 12pt;
+  font-family: Cambria;
+  display: inline-block;
+  width: 45%;
+  margin-left: 10px;
+}
