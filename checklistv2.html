@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<!-- <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"> -->
+		<title>Checklist</title>
+		<link rel="stylesheet" href="stylesheet.css" type="text/css">
+		<link rel="stylesheet" href="marka.min.css">
+        <script src="js/marka.min.js"></script>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<meta content="Fabricio Di Salvo" name="author">
+	</head>
+	<body>
+		<header><br>TERUMO BCT LATAM<br></header>
+		<!-- <a href="Home.html" style="text-decoration: none;"> -->
+		<h2 style="color: black;">
+		<i id="MainIcon"></i>Month End Checklist<br></h2>
+		<!-- </a> -->
+		<br>
+	<div class="flex-center"></div>
+<div class="task-container">
+	<h3>DAY TO DAY OPERATIONS</h3>
+	<div class="task">
+		<div class="category">DAY TO DAY: </div><div class="title"> Employee Expenses Reports</div>
+		<div class="description">Tarjetas Corporativas y Expense Reports de mes anterior.</div>
+		<i id="task01" onclick="changeStatustask(01)"></i>		<div id="statustexttask01" class="statustext">Not started</div>
+	</div>
+	<div class="task">
+		<div class="category">DAY TO DAY: </div><div class="title"> Tax Advances</div>
+		<div class="description">Anticipos impositivos del corriente mes.</div>
+		<i id="task02" onclick="changeStatustask(02)"></i><div id="statustexttask02" class="statustext">Not started</div>
+	</div>
+	<div class="task">
+		<div class="category">DAY TO DAY: </div><div class="title"> Import charges</div>
+		<div class="description">Anticipos y declaraciones de importaciones del corriente mes.</div>
+		<i id="task03" onclick="changeStatustask(03)"></i><div id="statustexttask03" class="statustext">Not started</div>
+	</div>
+	<div class="task">
+		<div class="category">DAY TO DAY: </div><div class="title"> Bank Reconciliation</div>
+		<div class="description">Conciliaciones bancarias al mes anterior.</div>
+		<i id="task04" onclick="changeStatustask(04)"></i><div id="statustexttask04" class="statustext">Not started</div>
+	</div>
+</div>
+<script>
+	var mainicon = new Marka('#MainIcon');
+		mainicon.set('square-o-check')
+		.color('#1A805B')
+	    .size('50');
+</script>
+<script>
+    var task01icon = new Marka('#task01');
+    var task02icon = new Marka('#task02');
+    var task03icon = new Marka('#task03');
+    var task04icon = new Marka('#task04');
+	task01icon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('30');
+	task02icon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('30');
+	task03icon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('30');
+	task04icon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('30');
+</script>
+<script>
+	function changeStatustask(numero) {
+	    if (numero < 10) {
+            var hola = "'statustexttask0" + numero + "'";
+	    } else { 
+	        var hola = "'statustexttask" + numero + "'";
+	    };
+	    document.getElementById(hola).innerHTML = "Completed";
+		task01icon.set('square-o-check')
+		.color('#1A805B');
+	}
+</script>
+<!-- 
+<script>
+	function changeStatustask(numero) {
+        var hola = 'statustexttask01';
+	    console.log(hola);
+        document.getElementById(hola).innerHTML = "Completed";
+			task01icon.set('square-o-check')
+				.color('#1A805B');
+	}
+</script>
+
+<script>
+	function changeStatustask01() {
+	    document.getElementById("statustexttask01").innerHTML = "Completed";
+			task01icon.set('square-o-check')
+				.color('#1A805B');
+	}
+	function changeStatustask02() {
+	    document.getElementById("statustexttask02").innerHTML = "Completed";
+			task02icon.set('square-o-check')
+				.color('#1A805B');
+	}
+	function changeStatustask03() {
+	    document.getElementById("statustexttask03").innerHTML = "Completed";
+			task03icon.set('square-o-check')
+				.color('#1A805B');
+	}
+	function changeStatustask04() {
+	    document.getElementById("statustexttask04").innerHTML = "Completed";
+			task04icon.set('square-o-check')
+				.color('#1A805B');
+	}
+</script>
+ -->
+
+
+ <!-- MAIN con Not Started, In Progress, Completed: 
+<script>
+	var mainicon = new Marka('#MainIcon');
+	mainicon.set('square-o-times')
+	    .color('#FF0000')
+	    .size('60');
+		setTimeout(function() {
+		    mainicon.set('square-o-minus')
+		    .color('#FFB600');
+		}, 2000);
+		setTimeout(function() {
+		    mainicon.set('square-o-check')
+		    .color('#1A805B');
+		}, 4000);
+</script>
+ -->
+</body></html>
