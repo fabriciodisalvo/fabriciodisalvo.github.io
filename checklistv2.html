@@ -65,6 +65,7 @@
 	    .color('#FF0000')
 	    .size('30');
 </script>
+<!-- 
 <script>
 	function changeStatustask(numero) {
 	    if (numero < 10) {
@@ -77,17 +78,17 @@
 		.color('#1A805B');
 	}
 </script>
-<!-- 
+ --> 
 <script>
 	function changeStatustask(numero) {
-        var hola = 'statustexttask01';
+        var hola = "document.getElementById('statustexttask0" + numero + "')";
 	    console.log(hola);
-        document.getElementById(hola).innerHTML = "Completed";
+        hola.innerHTML = "Completed";
 			task01icon.set('square-o-check')
 				.color('#1A805B');
 	}
 </script>
-
+<!--
 <script>
 	function changeStatustask01() {
 	    document.getElementById("statustexttask01").innerHTML = "Completed";
