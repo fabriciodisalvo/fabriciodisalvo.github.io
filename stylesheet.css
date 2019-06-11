@@ -1,4 +1,58 @@
-header {
+.item-a  {
+  font-size: 120px;
+  font-color: white;
+  align-self: stretch;
+  }
+
+@supports not (display: grid) {
+  .item-a,
+  .item-b,
+  .item-c,
+  .item-d {
+    background-color: red;
+  }
+}
+
+@supports (display: grid) {
+  .item-a {
+    grid-area: header;
+    background-color: #1A805B;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+  .item-b {
+    grid-area: main;
+    background-color: red;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+  .item-c {
+    grid-area: sidebar;
+    background: #f1e4d5;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+  .item-d {
+    grid-area: footer;
+    background-color: blue;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+      "header header header header"
+      "main main . sidebar"
+      "footer footer footer footer";
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+/*header {
   display: block;
   height: 126px;
   max-width: 1005px;
@@ -199,7 +253,7 @@ h5 {
   font-family: Cambria;
   text-align: center;
   vertical-align: middle;
-/*  padding-bottom: 13px;*/
+  padding-bottom: 13px;
   display: inline-block;
   border: 1px solid green;
 }
@@ -264,4 +318,4 @@ body {
 .more {
   padding-left: 30px;
     background-color: none;  
-}
+}*/
