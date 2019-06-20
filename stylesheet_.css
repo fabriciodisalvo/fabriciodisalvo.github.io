@@ -1,272 +1,95 @@
-header {
-  display: block;
-  height: 126px;
-  max-width: 1005px;
-  margin: 50px auto;
+@font-face {
+  font-family: "CstBerlinWest";
+  src: url("CstBerlinWest.otf");
+}
+
+.header_pl {
+  font-family: "CstBerlinWest";
+  text-align: center;
+  color: white;
+  font-size: 35px;
+  background-color: #2F5687;
+  align-self: stretch;
+  justify-self: stretch;
+}
+.item-a {
+  font-family: "CstBerlinWest";
+  font-size: 20px;
+  text-align: center;
+  color: #2F5687;
+  background-color: white;
+  grid-column-start: 1; 
+  grid-row-start: 1; 
+  grid-row-end: 3; 
+  align-self: stretch;
+  justify-self: stretch;
+}
+.item-b {
+  font-family: "CstBerlinWest";
+  font-size: 20px;
+  text-align: center;
+  color: #02A747;
+  background-color: white;
+  grid-column-start: 4; 
+  grid-row-start: 1; 
+  grid-row-end: 3; 
+  align-self: stretch;
+  justify-self: stretch;
+}
+.item-c {
+  font-family: "CstBerlinWest";
+  font-size: 15px;
+  text-align: center;
+  color: black;
+  background: #f1e4d5;
+  align-self: stretch;
+  justify-self: stretch;
+}
+.container_pl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+/*  grid-auto-rows: 35px;*/
+}
+
+
+/*
+
+1C4072
+203857
+
+.item-a {
+  grid-area: header;
   background-color: #1A805B;
-  text-align: center;
-  vertical-align: bottom;
-  font-size: 28pt;
-  font-style: normal;
-  color: white;
-  font-weight: bold;
-  font-family: Cambria;
+  align-self: stretch;
+  justify-self: stretch;
 }
-h1 {
-  font-size: 28pt;
-  font-style: normal;
-  color: white;
-  font-weight: bold;
-  text-transform: none;
-  font-family: Cambria;
-  text-align: center;
+.item-b {
+  grid-area: main;
+  background-color: red;
+  align-self: stretch;
+  justify-self: stretch;
 }
-h2 {
-  text-transform: none;
-  font-size: 26pt;
-  color: #1a805b;
-  font-weight: normal;
-  font-style: normal;
-  font-family: Cambria;
-  text-align: center;
+.item-c {
+  grid-area: sidebar;
+  background: #f1e4d5;
+  align-self: stretch;
+  justify-self: stretch;
 }
-h3 {
-  text-transform: none;
-  font-size: 24pt;
-  font-weight: normal;
-  font-style: normal;
-  font-family: Cambria;
-  text-align: center;
+.item-d {
+  grid-area: footer;
+  background-color: blue;
+  align-self: stretch;
+  justify-self: stretch;
 }
 .container {
-  max-width: 831px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+  align-items: center;
+  justify-items: center;
 }
-.container-infoitem {
-  display: inline-block;
-  width: 33%;
-  text-align: center;
-}
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
-.info-item {
-  display: block;
-  position: relative;
-  float: left;
-  width: 130px;
-  height: 130px;
-  margin: 5px;
-  padding: 10px;
-  background: #888;
-  background-color: #7F7F7F;
-  border-radius: 9.9em 9.9em 9.9em 9.9em;
-  color: #939393;
-  text-decoration: none;
-  transition: height .5s;
-  -webkit-transition: height .5s;
-  -moz-transition: height .5s;
-}
-.info-item .name {
-  display: inline;
-  font-family: Cambria;
-  font-size: 18px;
-  font-weight: bold;
-  font-style: normal;
-  text-transform: none;
-  color: white;
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-.info-item .title {
-  margin-top: -75px;
-  font-size: 24pt;
-  font-style: normal;
-  color: #666666;
-  font-weight: normal;
-  text-transform: none;
-  font-family: Cambria;
-  text-align: center;
-}
-.info-item.dimmed {
-  width: 90px;
-  height: 90px;
-  padding: 5px;
-  background-color: #d9d9d9;
-}
-.info-item.dimmed .name {
-  display: inline;
-  font-family: Cambria;
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  text-transform: none;
-  color: black;
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-.info-item.dimmed .title {
-  margin-top: -50px;
-  font-size: 18pt;
-  font-style: normal;
-  color: #666666;
-  font-weight: normal;
-  text-transform: none;
-  font-family: Cambria;
-  text-align: center;
-  min-width: 90px;
-}
-.info-item.selected {
-  background-color: #FF6546;
-}
-.info-item.selected .title  {
-  color: #1a805b;
-}
-.info-item:hover { 
-  background-color: #FF6546; 
-}
-.info-item-sub {
-  display: block;
-  position: relative;
-  float: left;
-  width: 130px;
-  height: 130px;
-  margin: 5px;
-  padding: 10px;
-  background: #888;
-  background-color: #7F7F7F;
-  border-radius: 9.9em 9.9em 9.9em 9.9em;
-  color: #939393;
-  text-decoration: none;
-}
-.info-item-sub .name {
-  display: inline;
-  font-family: Cambria;
-  font-size: 18px;
-  font-weight: bold;
-  font-style: normal;
-  text-transform: none;
-  color: white;
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%); 
-}
-.task-container {
-  max-width: 1010px;
-  margin: 0 auto;
-  border: 1px solid black;
-}
-.task {
-  max-width: 1005px;
-  height: 60px;
-  margin: 0 auto;
-}
-.task .category {
-  font-size: 14pt;
-  font-family: Cambria;
-  font-weight: bold;
-  width: 50px;
-  display: inline-block;
-  text-align: center;
-  margin-left: 20px;
-  margin-top: 10px;
-}
-.task .title {
-  font-size: 14pt;
-  font-family: Cambria;
-  width: 25%;
-  display: inline-block;
-  margin-left: 10px;
-}
-.task .description {
-  font-size: 12pt;
-  font-family: Cambria;
-  margin-right: 10pt;
-  display: inline-block;
-  width: 48%;
-  margin-left: 10px;
-}
-#icon {
-  cursor: pointer;
-  width: 5%;
-  background-color: #FFF;
-  display: inline-block;
-  margin-top: 10px;
-}
-.statustext {
-  text-transform: none;
-  font-size: 12pt;
-  font-weight: normal;
-  font-style: normal;
-  font-family: Cambria;
-  width: 10%;
-  padding-bottom: 6px;
-  display: inline-block;
-  margin-top: 5px;
-}
-@media print {
-  header {
-    height: 65px;
-    max-width: 700px;
-    font-size: 16pt;
-    margin-top: -25px;
-  }
-  h2 {
-    font-size: 16pt;
-  }
-  h3 {
-    font-size: 12pt;
-  }
-  #MainIcon {
-    display: none;
-  }
-  .task {
-    max-width: 700px;
-    height: 35px;
-  }
-  .task-container {
-    max-width: 700px;
-    padding-bottom: 10px;
-  }
-  .task .category {
-    font-size: 10pt;
-    text-align: center;
-    font-weight: normal;
-    margin-left: 20px;
-    margin-top: 10px;
-  }
-  .task .title {
-    font-size: 10pt;
-    font-family: Cambria;
-    width: 55%;
-    margin-left: 50px;
-  }
-  .task .description {
-    display: none;
-  }
-  .statustext {
-    font-size: 10pt;
-  }
-  .backStatusTask {
-    display: none;
-  } 
-  .page-break { 
-    display: block; 
-    page-break-before: always; 
-  }
-  .print-hide { 
-    display: none;
-  }
-}
+*/
