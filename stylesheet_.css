@@ -1,58 +1,80 @@
 @font-face {
   font-family: "CstBerlinWest";
-  src: url("CstBerlinWest.otf");
+  src: url("CstBerlinWestOT.otf");
+}
+@font-face {
+  font-family: "CstBerlinWestBold";
+  src: url("CstBerlinWestOT-Bold.otf");
+}
+@font-face {
+  font-family: "Calibri";
+  src: url("calibri.ttf");
+}
+@font-face {
+  font-family: "CalibriB";
+  src: url("calibrib.ttf");
+}
+
+.ctrd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  justify-self: stretch;
 }
 
 .header_pl {
-  font-family: "CstBerlinWest";
-  text-align: center;
+  min-height: 40px;
   color: white;
-  font-size: 35px;
+  font-size: 26px;
   background-color: #2F5687;
-  align-self: stretch;
-  justify-self: stretch;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
 }
-.item-a {
-  font-family: "CstBerlinWest";
-  font-size: 20px;
-  text-align: center;
+.title_pl {
   color: #2F5687;
-  background-color: white;
-  grid-column-start: 1; 
-  grid-row-start: 1; 
-  grid-row-end: 3; 
-  align-self: stretch;
-  justify-self: stretch;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 4;
 }
-.item-b {
-  font-family: "CstBerlinWest";
-  font-size: 20px;
-  text-align: center;
+.percentage_pl {
   color: #02A747;
-  background-color: white;
-  grid-column-start: 4; 
-  grid-row-start: 1; 
-  grid-row-end: 3; 
-  align-self: stretch;
-  justify-self: stretch;
+  font-size: 45px;
+  vertical-align: bottom;
+  grid-column-start: 4;
+  grid-row-start: 2;
+  grid-row-end: 4;
 }
-.item-c {
-  font-family: "CstBerlinWest";
-  font-size: 15px;
-  text-align: center;
-  color: black;
-  background: #f1e4d5;
-  align-self: stretch;
-  justify-self: stretch;
+.item_pl {
+  font-family: "Calibri";
+  font-size: 20px;
+}
+.greyed {
+  color: grey;
 }
 .container_pl {
+  font-family: "CalibriB";
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  max-width: 600px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-/*  grid-auto-rows: 35px;*/
+  grid-template-columns: repeat(3, 1fr) 1.5fr;
+  grid-auto-rows: minmax(35px, auto);
 }
 
 
 /*
+
+
+background: #f1e4d5;
 
 1C4072
 203857
