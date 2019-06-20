@@ -22,53 +22,93 @@
   align-self: stretch;
   justify-self: stretch;
 }
-
 .header_pl {
   min-height: 40px;
   color: white;
   font-size: 26px;
-  background-color: #2F5687;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
 }
+
 .title_pl {
   color: #2F5687;
   grid-column-start: 1;
   grid-column-end: 2;
+}
+.bg_lightblue {
+  background-color: #2F5687;
+} 
+.bg_midblue {
+  background-color: #1C4072;
+}
+.bg_darkblue {
+  background-color: #203857;
+}
+.percentage_pl {
+  font-family: "Calibri";
+  color: #02A747;
+  font-size: 28px;
+  vertical-align: bottom;
+  grid-column-start: 4;
+}
+.orange {
+  color: #DE600D;
+}
+.red {
+  color: #FF0000;
+}
+.reduced {
+  font-size: 15px;
+  text-align: center;
+}
+.sales_rows {
   grid-row-start: 2;
   grid-row-end: 4;
 }
-.percentage_pl {
-  color: #02A747;
-  font-size: 45px;
-  vertical-align: bottom;
-  grid-column-start: 4;
-  grid-row-start: 2;
-  grid-row-end: 4;
+.cost_rows {
+  grid-row-start: 4;
+  grid-row-end: 6;
+}
+.opex_rows {
+  grid-row-start: 6;
+  grid-row-end: 8;
 }
 .item_pl {
   font-family: "Calibri";
-  font-size: 20px;
+  font-size: 15px;
+  border-bottom: 1px solid #2F5687;
 }
 .greyed {
   color: grey;
+  border-bottom: none;
 }
 .container_pl {
   font-family: "CalibriB";
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 35px;
+  font-size: 18px;
   color: black;
   background-color: white;
   border: 2px solid black;
-  max-width: 600px;
+  min-width: 300px;
+  max-width: 500px;
+/*  margin: 10px;*/
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 1.5fr;
-  grid-auto-rows: minmax(35px, auto);
+  grid-template-columns: repeat(3, 1fr) 1fr;
+  grid-auto-rows: minmax(30px, auto);
 }
+@media screen and (min-width: 950px) {
+  .container {
+    border: 2px black;
+    min-width: 910px;
+    max-width: 1600px;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(35px, auto);
+  }
+}
+
 
 
 /*
@@ -79,39 +119,4 @@ background: #f1e4d5;
 1C4072
 203857
 
-.item-a {
-  grid-area: header;
-  background-color: #1A805B;
-  align-self: stretch;
-  justify-self: stretch;
-}
-.item-b {
-  grid-area: main;
-  background-color: red;
-  align-self: stretch;
-  justify-self: stretch;
-}
-.item-c {
-  grid-area: sidebar;
-  background: #f1e4d5;
-  align-self: stretch;
-  justify-self: stretch;
-}
-.item-d {
-  grid-area: footer;
-  background-color: blue;
-  align-self: stretch;
-  justify-self: stretch;
-}
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 
-    "header header header header"
-    "main main . sidebar"
-    "footer footer footer footer";
-  align-items: center;
-  justify-items: center;
-}
 */
