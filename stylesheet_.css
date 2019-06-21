@@ -1,18 +1,18 @@
 @font-face {
   font-family: "CstBerlinWest";
-  src: url("CstBerlinWestOT.otf");
+  src: url("CSS/fonts/CstBerlinWestOT.otf");
 }
 @font-face {
   font-family: "CstBerlinWestBold";
-  src: url("CstBerlinWestOT-Bold.otf");
+  src: url("CSS/fonts/CstBerlinWestOT-Bold.otf");
 }
 @font-face {
   font-family: "Calibri";
-  src: url("calibri.ttf");
+  src: url("CSS/fonts/calibri.ttf");
 }
 @font-face {
   font-family: "CalibriB";
-  src: url("calibrib.ttf");
+  src: url("CSS/fonts/calibrib.ttf");
 }
 
 .ctrd {
@@ -25,7 +25,7 @@
 .header_pl {
   min-height: 40px;
   color: white;
-  font-size: 26px;
+  font-size: 1.44444em;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
@@ -48,7 +48,7 @@
 .percentage_pl {
   font-family: "Calibri";
   color: #02A747;
-  font-size: 28px;
+  font-size: 1.55555em;
   vertical-align: bottom;
   grid-column-start: 4;
 }
@@ -59,7 +59,7 @@
   color: #FF0000;
 }
 .reduced {
-  font-size: 15px;
+  font-size: 0.83333em;
   text-align: center;
 }
 .sales_rows {
@@ -76,7 +76,7 @@
 }
 .item_pl {
   font-family: "Calibri";
-  font-size: 15px;
+  font-size: 0.83333em;
   border-bottom: 1px solid #2F5687;
 }
 .greyed {
@@ -86,34 +86,36 @@
 .container_pl {
   font-family: "CalibriB";
   font-weight: bold;
-  font-size: 18px;
   color: black;
   background-color: white;
   border: 2px solid black;
-  min-width: 300px;
+  min-width: 330px;
   max-width: 500px;
+  margin: 0.1em;
   display: grid;
   grid-template-columns: repeat(3, 1fr) 1fr;
   grid-auto-rows: minmax(30px, auto);
 }
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 64.56250em) {
   .container {
+    font-size: 18px;
     border: 2px black;
-    min-width: 910px;
+    min-width: 1010px;
     max-width: 1600px;
-    margin: 10px;
+    margin: 0.5em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(35px, auto);
+    grid-auto-rows: minmax(2em, auto);
     justify-content: center;
     align-items: center;
     align-self: stretch;
     justify-self: stretch;
   }
 }
-  @media screen and (max-width: 950px) and (min-width: 520px) {
+  @media screen and (max-width: 64.56250em) and (min-width: 520px) {
   .container {
-    margin: 10px;
+    font-size: 22px;
+    margin: 0.5em;
     display: grid;
     grid-template-columns: 1fr;
   }
