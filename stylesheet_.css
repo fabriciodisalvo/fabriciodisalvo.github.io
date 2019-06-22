@@ -113,7 +113,22 @@
 border: 1px solid #2D8E5B;
 }
 
-
+@media screen and (max-width: 64.56250em) and (min-width: 520px) {
+  .header {
+    font-size: 4em;
+    min-width: 500px;
+  }
+  .container-pl {
+    min-width: 700px;
+  }
+  .container {
+    font-size: 30px;
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
 @media screen and (min-width: 64.56250em) {
   .header {
     font-size: 3em;
