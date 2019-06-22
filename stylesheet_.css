@@ -113,7 +113,7 @@
 border: 1px solid #2D8E5B;
 }
 
-@media screen and (max-width: 64.56250em) and (min-width: 520px) {
+@media screen, handheld and (max-width: 64.56250em) and (min-width: 520px) {
   .header {
     font-size: 4em;
     min-width: 500px;
@@ -129,7 +129,7 @@ border: 1px solid #2D8E5B;
     justify-items: center;
   }
 }
-@media screen and (min-width: 64.56250em) {
+@media screen, handheld and (min-width: 64.56250em) {
   .header {
     font-size: 3em;
     min-width: 500px;
