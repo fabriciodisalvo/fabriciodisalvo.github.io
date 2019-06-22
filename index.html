@@ -1,81 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <head>
-  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>CSS GRID TEST</title>
-  <link rel="stylesheet" href="stylesheet_.css" type="text/css">
+<!--   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"> -->
+  <meta charset="UTF-8">
+  <title>Current Report</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
   <meta content="Fabricio Di Salvo" name="author">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--       <meta content="Proceso" name="description"> -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div>
     <div class="header">XXXX ARG XXX 2019</div>
     <div class="container">
-        <div class="container-pl">
-            <div class="header-pl ctrd bg-lightblue">CURRENT MONTH</div>
-        	<div class="title-pl sales-rows ctrd">Sales</div>
-        	<div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">99,753</div>
-        	<div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">88,049</div>
-            <div class="percentage-pl sales-rows ctrd red">80%</div>
-            <div class="title-pl cost-rows ctrd">Cost</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">77,753</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">66,049</div>
-            <div class="percentage-pl cost-rows ctrd orange">65%</div>
-            <div class="title-pl opex-rows ctrd">Expenses</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">55,753</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">44,049</div>
-            <div class="percentage-pl opex-rows ctrd">80%</div>
+        <div class="container-pl centered">
+            <div class="header-pl bg-lightblue">CURRENT MONTH</div>
+        	<div class="title-pl sales-rows">Sales</div>
+        	<div class="item-pl">Actual</div>
+            <div class="item-pl">99,753</div>
+        	<div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">88,049</div>
+            <div class="percentage-pl sales-rows red">80%</div>
+            <div class="title-pl cost-rows">Cost</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">77,753</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">66,049</div>
+            <div class="percentage-pl cost-rows orange">65%</div>
+            <div class="title-pl opex-rows">Expenses</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">55,753</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">44,049</div>
+            <div class="percentage-pl opex-rows">80%</div>
+        </div> 
+        <div class="container-pl centered">
+            <div class="header-pl bg-midblue">YEAR TO DATE (YTD)</div>
+            <div class="title-pl sales-rows">Sales</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">199,753</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">188,049</div>
+            <div class="percentage-pl sales-rows red">85%</div>
+            <div class="title-pl cost-rows">Cost</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">177,753</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">166,049</div>
+            <div class="percentage-pl cost-rows orange">70%</div>
+            <div class="title-pl opex-rows">Expenses</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">155,753</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">144,049</div>
+            <div class="percentage-pl opex-rows">85%</div>
         </div>
-        <div class="container-pl">
-            <div class="header-pl ctrd bg-midblue">YEAR TO DATE (YTD)</div>
-            <div class="title-pl sales-rows ctrd">Sales</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">199,753</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">188,049</div>
-            <div class="percentage-pl sales-rows ctrd red">85%</div>
-            <div class="title-pl cost-rows ctrd">Cost</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">177,753</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">166,049</div>
-            <div class="percentage-pl cost-rows ctrd orange">70%</div>
-            <div class="title-pl opex-rows ctrd">Expenses</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">155,753</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">144,049</div>
-            <div class="percentage-pl opex-rows ctrd">85%</div>
-        </div>
-        <div class="container-pl">
-            <div class="header-pl ctrd bg-darkblue">OPERATING P&L</div>
-            <div class="title-pl sales-rows ctrd reduced">SGP Margin</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">43,0%</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">29,5%</div>
-            <div class="percentage-pl sales-rows ctrd">+18%</div>
-            <div class="title-pl cost-rows ctrd reduced">Actual<br>Gross Profit</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">22,000</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">10,000</div>
-            <div class="percentage-pl cost-rows ctrd">+120%</div>
-            <div class="title-pl opex-rows ctrd reduced">Operating<br>Profit / Loss</div>
-            <div class="item-pl ctrd">Actual</div>
-            <div class="item-pl ctrd">12,000</div>
-            <div class="item-pl greyed ctrd">Plan</div>
-            <div class="item-pl greyed ctrd">2,000</div>
-            <div class="percentage-pl opex-rows ctrd">+350%</div>
+        <div class="container-pl centered">
+            <div class="header-pl bg-darkblue">OPERATING P&L</div>
+            <div class="title-pl sales-rows reduced">SGP Margin</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">43,0%</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">29,5%</div>
+            <div class="percentage-pl sales-rows">+18%</div>
+            <div class="title-pl cost-rows reduced">Actual<br>Gross Profit</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">22,000</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">10,000</div>
+            <div class="percentage-pl cost-rows">+120%</div>
+            <div class="title-pl opex-rows reduced">Operating<br>Profit / Loss</div>
+            <div class="item-pl">Actual</div>
+            <div class="item-pl">12,000</div>
+            <div class="item-pl greyed">Plan</div>
+            <div class="item-pl greyed">2,000</div>
+            <div class="percentage-pl opex-rows">+350%</div>
         </div>
     </div>
     <div class="container-opex">
+        <div class="dept-opex-container headers">
+            <div class="title-opex">Dept</div>
+            <div class="costcenter-opex">CostCenter</div>
+            <div class="amount-opex">Actual</div>
+            <div class="percentage-opex">% sales</div>
+            <div class="amount-opex">Plan</div>
+            <div class="percentage-opex">% sales</div>
+            <div class="amount-opex">Diff</div>
+            <div class="percentage-opex">% sales</div>
+        </div>
         <div class="dept-opex-container ga">
             <div class="title-opex">XXX</div>
             <div class="costcenter-opex">XXXXXX</div>
