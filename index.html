@@ -8,94 +8,144 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #111;
-      color: white;
-    }
+:root {
+  color-scheme: dark;
+}
 
-    header {
-      padding: 12px;
-      background: #222;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    main {
-      padding: 12px;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0f0f0f;
+  color: white;
+  min-height: 100svh;
+  padding-bottom: env(safe-area-inset-bottom);
+}
 
-    video {
-      width: 100%;
-      max-height: 55vh;
-      background: black;
-      border-radius: 12px;
-    }
+header {
+  padding: calc(10px + env(safe-area-inset-top)) 14px 10px;
+  background: #1f1f1f;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-size: 17px;
+}
 
-    .camera-wrap {
-      position: relative;
-    }
+main {
+  padding: 10px 12px 18px;
+  max-width: 430px;
+  margin: 0 auto;
+}
 
-    .scan-box {
-      position: absolute;
-      right: 8%;
-      top: 8%;
-      width: 42%;
-      height: 18%;
-      border: 3px solid #00ff99;
-      border-radius: 8px;
-      box-shadow: 0 0 0 9999px rgba(0,0,0,0.35);
-      pointer-events: none;
-    }
+.camera-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 13;
+  max-height: 56svh;
+  overflow: hidden;
+  border-radius: 18px;
+  background: black;
+}
 
-    button {
-      font-size: 16px;
-      padding: 12px 14px;
-      margin: 6px 4px 6px 0;
-      border: 0;
-      border-radius: 10px;
-      background: #00c781;
-      color: #061b13;
-      font-weight: 700;
-    }
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: black;
+}
 
-    button.secondary {
-      background: #444;
-      color: white;
-    }
+.scan-box {
+  position: absolute;
+  right: 6%;
+  top: 6%;
+  width: 46%;
+  height: 14%;
+  border: 3px solid #00ff99;
+  border-radius: 10px;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.36);
+  pointer-events: none;
+}
 
-    button.danger {
-      background: #d94343;
-      color: white;
-    }
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
 
-    textarea {
-      width: 100%;
-      min-height: 180px;
-      box-sizing: border-box;
-      border-radius: 10px;
-      padding: 10px;
-      font-size: 16px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
+button {
+  font-size: 16px;
+  min-height: 48px;
+  padding: 12px 10px;
+  border: 0;
+  border-radius: 14px;
+  background: #00c781;
+  color: #061b13;
+  font-weight: 800;
+  touch-action: manipulation;
+}
 
-    .status {
-      margin: 10px 0;
-      color: #ccc;
-    }
+button:disabled {
+  opacity: 0.5;
+}
 
-    .last {
-      font-size: 28px;
-      font-weight: 800;
-      color: #00ff99;
-      margin: 8px 0;
-    }
+button.secondary {
+  background: #3c3c3c;
+  color: white;
+}
 
-    canvas {
-      display: none;
-    }
+button.danger {
+  background: #d94343;
+  color: white;
+}
+
+.status {
+  margin: 10px 0 6px;
+  color: #d0d0d0;
+  font-size: 14px;
+  line-height: 1.3;
+  min-height: 36px;
+}
+
+.last-label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.last {
+  font-size: clamp(34px, 10vw, 48px);
+  line-height: 1;
+  font-weight: 900;
+  color: #00ff99;
+  margin: 4px 0 8px;
+  letter-spacing: 0.04em;
+}
+
+.counter {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 130px;
+  max-height: 22svh;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 0;
+  padding: 12px;
+  font-size: 16px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: #202020;
+  color: white;
+}
+
+canvas {
+  display: none;
+}
   </style>
 </head>
 
@@ -109,22 +159,24 @@
       <video id="video" autoplay playsinline muted></video>
       <div class="scan-box"></div>
     </div>
+  <div class="status" id="status">Starting camera…</div>
 
-    <div class="status" id="status">Starting camera…</div>
-    <div>Last code:</div>
-    <div class="last" id="lastCode">—</div>
+  <div class="last-label">Last code:</div>
+  <div class="last" id="lastCode">—</div>
 
+  <div class="controls">
     <button id="scanBtn">Scan</button>
-    <button id="autoBtn" class="secondary">Start auto-scan</button>
-    <button id="copyBtn" class="secondary">Copy list</button>
-    <button id="downloadBtn" class="secondary">Download CSV</button>
+    <button id="autoBtn" class="secondary">Auto</button>
+    <button id="copyBtn" class="secondary">Copy</button>
+    <button id="downloadBtn" class="secondary">CSV</button>
     <button id="clearBtn" class="danger">Clear</button>
+  </div>
 
-    <p>
-      Codes scanned: <strong id="count">0</strong>
-    </p>
+  <p class="counter">
+    Codes scanned: <strong id="count">0</strong>
+  </p>
 
-    <textarea id="output" readonly></textarea>
+  <textarea id="output" readonly></textarea>
 
     <canvas id="canvas"></canvas>
   </main>
@@ -155,9 +207,20 @@
         .toUpperCase()
         .replace(/[^A-Z0-9]/g, "");
 
-      const match = cleaned.match(/[A-Z0-9]{5}/);
+  /*
+    Match:
+    - exactly 3 letters
+    - followed by 1 or 2 numbers
+
+    Examples:
+    ARG1
+    FRA12
+  */
+      const match = cleaned.match(/[A-Z]{3}[0-9]{1,2}/);
+
       return match ? match[0] : null;
     }
+
 
     function saveCodes() {
       localStorage.setItem("cardCodes", JSON.stringify(codes));
@@ -237,10 +300,10 @@
         right/top corner area where the card code is expected.
         Adjust these numbers if your code is in a different position.
       */
-      const cropX = videoWidth * 0.50;
-      const cropY = videoHeight * 0.06;
-      const cropW = videoWidth * 0.42;
-      const cropH = videoHeight * 0.20;
+      const cropX = videoWidth * 0.48;
+      const cropY = videoHeight * 0.05;
+      const cropW = videoWidth * 0.46;
+      const cropH = videoHeight * 0.16;
 
       canvas.width = cropW;
       canvas.height = cropH;
@@ -303,7 +366,7 @@
         if (code) {
           addCode(code);
         } else {
-          statusEl.textContent = `No 5-character code found. OCR saw: "${rawText.trim()}"`;
+          statusEl.textContent = `No valid code found. Expected ARG1 or FRA12 format. OCR saw: "${rawText.trim()}"`;
         }
       } catch (err) {
         statusEl.textContent = `Scan error: ${err.message}`;
