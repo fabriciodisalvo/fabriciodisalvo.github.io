@@ -1,436 +1,464 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Card Code Scanner</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Cup Match Result Input</title>
   <style>
-:root {
-  color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0f0f0f;
-  color: white;
-  min-height: 100svh;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-header {
-  padding: calc(10px + env(safe-area-inset-top)) 14px 10px;
-  background: #1f1f1f;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  font-size: 17px;
-}
-
-main {
-  padding: 10px 12px 18px;
-  max-width: 430px;
-  margin: 0 auto;
-}
-
-.camera-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 13;
-  max-height: 56svh;
-  overflow: hidden;
-  border-radius: 18px;
-  background: black;
-}
-
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: black;
-}
-
-.scan-box {
-  position: absolute;
-  right: 6%;
-  top: 6%;
-  width: 46%;
-  height: 14%;
-  border: 3px solid #00ff99;
-  border-radius: 10px;
-  box-shadow: 0 0 0 9999px rgba(0,0,0,0.36);
-  pointer-events: none;
-}
-
-.controls {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-button {
-  font-size: 16px;
-  min-height: 48px;
-  padding: 12px 10px;
-  border: 0;
-  border-radius: 14px;
-  background: #00c781;
-  color: #061b13;
-  font-weight: 800;
-  touch-action: manipulation;
-}
-
-button:disabled {
-  opacity: 0.5;
-}
-
-button.secondary {
-  background: #3c3c3c;
-  color: white;
-}
-
-button.danger {
-  background: #d94343;
-  color: white;
-}
-
-.status {
-  margin: 10px 0 6px;
-  color: #d0d0d0;
-  font-size: 14px;
-  line-height: 1.3;
-  min-height: 36px;
-}
-
-.last-label {
-  font-size: 14px;
-  color: #aaa;
-}
-
-.last {
-  font-size: clamp(34px, 10vw, 48px);
-  line-height: 1;
-  font-weight: 900;
-  color: #00ff99;
-  margin: 4px 0 8px;
-  letter-spacing: 0.04em;
-}
-
-.counter {
-  margin: 8px 0;
-  font-size: 15px;
-}
-
-textarea {
-  width: 100%;
-  min-height: 130px;
-  max-height: 22svh;
-  box-sizing: border-box;
-  border-radius: 14px;
-  border: 0;
-  padding: 12px;
-  font-size: 16px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  background: #202020;
-  color: white;
-}
-
-canvas {
-  display: none;
-}
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      width: min(1000px, 100%);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+    p.lead {
+      max-width: 760px;
+      line-height: 1.75;
+      color: #cbd5e1;
+    }
+    #matches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    .match-card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 18px;
+      padding: 14px;
+      margin: 0;
+      box-shadow: 0 14px 24px rgba(15, 23, 42, 0.18);
+    }
+    .match-title {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .teams {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+    .scoreboard {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .score {
+      font-size: 1.4rem;
+      font-weight: 800;
+      min-width: 110px;
+      text-align: center;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(100, 116, 139, 0.15);
+      color: #f8fafc;
+    }
+    .match-meta {
+      color: #94a3b8;
+    }
+    .summary.team-summary {
+      display: none;
+    }
+    .slider-row {
+      display: grid;
+      gap: 10px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #38bdf8;
+    }
+    .points-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .team-box {
+      padding: 14px 16px;
+      background: rgba(148, 163, 184, 0.08);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+    .team-name {
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      color: #e2e8f0;
+    }
+    .points {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .summary {
+      margin-top: 28px;
+    }
+    .summary h2 {
+      margin: 0 0 14px;
+      font-size: 1.5rem;
+    }
+    .summary.groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    .group-card {
+      margin: 0;
+    }
+    .group-card h3 {
+      margin: 0 0 10px;
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .table th,
+    .table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+    .table tr:last-child td {
+      border-bottom: none;
+    }
+    .table th {
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+    .table td:nth-child(2) {
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .hint {
+      margin-top: 14px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      visibility: hidden;
+    }
+    @media (max-width: 640px) {
+      .points-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <header>
-    <strong>Card Code Scanner</strong>
-  </header>
+  <div class="container">
+    <h1>World Cup Match Result Input</h1>
+    <!-- <p class="lead">Use the slider for each match to set the goal difference from the first team’s perspective. Negative values mean the first team loses by that many goals, zero means a draw, and positive values mean the first team wins by that many goals.</p> -->
 
-  <main>
-    <div class="camera-wrap">
-      <video id="video" autoplay playsinline muted></video>
-      <div class="scan-box"></div>
-    </div>
-  <div class="status" id="status">Starting camera…</div>
+    <div id="matches"></div>
 
-  <div class="last-label">Last code:</div>
-  <div class="last" id="lastCode">—</div>
+    <section class="summary team-summary">
+      <h2>Team points summary</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody id="points-summary"></tbody>
+      </table>
+    </section>
 
-  <div class="controls">
-    <button id="scanBtn">Scan</button>
-    <button id="autoBtn" class="secondary">Auto</button>
-    <button id="copyBtn" class="secondary">Copy</button>
-    <button id="downloadBtn" class="secondary">CSV</button>
-    <button id="clearBtn" class="danger">Clear</button>
+      <h2>Group standings</h2>
+    <section class="summary groups">
+      <div class="group-card">
+        <h3>Group I</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Points</th>
+              <th>Goal diff</th>
+            </tr>
+          </thead>
+          <tbody id="group-i-summary"></tbody>
+        </table>
+      </div>
+      <div class="group-card">
+        <h3>Group H</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Points</th>
+              <th>Goal diff</th>
+            </tr>
+          </thead>
+          <tbody id="group-h-summary"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="summary best-third">
+      <h2>Best third-placed teams</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>Games played</th>
+            <th>Points</th>
+            <th>Goal diff</th>
+            <th>Goals For</th>
+            <th>Goals Against</th>
+          </tr>
+        </thead>
+        <tbody id="best-third-summary"></tbody>
+      </table>
+    </section>
   </div>
 
-  <p class="counter">
-    Codes scanned: <strong id="count">0</strong>
-  </p>
-
-  <textarea id="output" readonly></textarea>
-
-    <canvas id="canvas"></canvas>
-  </main>
-
   <script>
-    let cameraReady = false;
-  
-    const video = document.getElementById("video");
-    const canvas = document.getElementById("canvas");
-    const statusEl = document.getElementById("status");
-    const lastCodeEl = document.getElementById("lastCode");
-    const outputEl = document.getElementById("output");
-    const countEl = document.getElementById("count");
+    const matchesData = [
+      { id: 'match1', home: 'Norway', away: 'France', diff: 0 },
+      { id: 'match2', home: 'Senegal', away: 'Iraq', diff: 0 },
+      { id: 'match3', home: 'Cape Verde', away: 'Saudi Arabia', diff: 0 },
+      { id: 'match4', home: 'Uruguay', away: 'Spain', diff: 0 }
+    ];
 
-    const scanBtn = document.getElementById("scanBtn");
-    const autoBtn = document.getElementById("autoBtn");
-    const copyBtn = document.getElementById("copyBtn");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const clearBtn = document.getElementById("clearBtn");
+    const matchesContainer = document.getElementById('matches');
+    const pointsSummary = document.getElementById('points-summary');
+    const groupISummary = document.getElementById('group-i-summary');
+    const groupHSummary = document.getElementById('group-h-summary');
+    const bestThirdSummary = document.getElementById('best-third-summary');
 
-    let codes = JSON.parse(localStorage.getItem("cardCodes") || "[]");
-    let worker = null;
-    let scanning = false;
-    let autoScanning = false;
+    const bestThirdPlacesData = [
+      { team: 'Sweden', games: 3, points: 4, gd: 0, gf: 7, ga: 7 },
+      { team: 'Ecuador', games: 3, points: 4, gd: 0, gf: 2, ga: 2 },
+      { team: 'Bosnia', games: 3, points: 4, gd: -1, gf: 5, ga: 6 },
+      { team: 'Paraguay', games: 3, points: 4, gd: -1, gf: 2, ga: 4 },
+      { team: 'Croatia', games: 2, points: 3, gd: -1, gf: 3, ga: 4 },
+      { team: 'Korea', games: 3, points: 3, gd: -1, gf: 2, ga: 3 },
+      { team: 'Algeria', games: 2, points: 3, gd: -2, gf: 2, ga: 4 },
+      { team: 'Scotland', games: 3, points: 3, gd: -3, gf: 1, ga: 4 },
+      { team: 'Cape Verde', games: 2, points: 2, gd: 0, gf: 2, ga: 2 },
+      { team: 'Belgium', games: 2, points: 2, gd: 0, gf: 1, ga: 1 },
+      { team: 'Congo', games: 2, points: 1, gd: -1, gf: 1, ga: 2 },
+      { team: 'Senegal', games: 2, points: 0, gd: -3, gf: 3, ga: 6 }
+    ];
 
-    function normalizeCode(text) {
-      const cleaned = text
-        .toUpperCase()
-        .replace(/[^A-Z0-9]/g, "");
-
-  /*
-    Match:
-    - exactly 3 letters
-    - followed by 1 or 2 numbers
-
-    Examples:
-    ARG1
-    FRA12
-  */
-      const match = cleaned.match(/[A-Z]{3}[0-9]{1,2}/);
-
-      return match ? match[0] : null;
-    }
-
-
-    function saveCodes() {
-      localStorage.setItem("cardCodes", JSON.stringify(codes));
-      outputEl.value = codes.join("\n");
-      countEl.textContent = codes.length;
-    }
-
-    function addCode(code) {
-      if (!code) return;
-
-      if (!codes.includes(code)) {
-        codes.push(code);
-        saveCodes();
-        lastCodeEl.textContent = code;
-        statusEl.textContent = `Added ${code}`;
-      } else {
-        lastCodeEl.textContent = code;
-        statusEl.textContent = `${code} already scanned`;
+    const groupData = {
+      I: {
+        France: { initialPoints: 6, initialGD: 5 },
+        Norway: { initialPoints: 6, initialGD: 4 },
+        Senegal: { initialPoints: 0, initialGD: -3 },
+        Iraq: { initialPoints: 0, initialGD: -6 }
+      },
+      H: {
+        Spain: { initialPoints: 4, initialGD: 4 },
+        Uruguay: { initialPoints: 2, initialGD: 0 },
+        'Cape Verde': { initialPoints: 2, initialGD: 0 },
+        'Saudi Arabia': { initialPoints: 1, initialGD: -4 }
       }
-    }
-    async function initCamera() {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        statusEl.textContent = "Camera unavailable. Use HTTPS or localhost.";
-        return;
-      }
+    };
 
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: { ideal: "environment" },
-          width: { ideal: 1920 },
-          height: { ideal: 1080 }
-        },
-        audio: false
+    function resultScore(diff) {
+      if (diff === 0) return { home: 1, away: 1 };
+      if (diff > 0) return { home: diff + 1, away: 1 };
+      return { home: 1, away: 1 - diff };
+    }
+
+    function matchPoints(diff) {
+      if (diff > 0) return [3, 0];
+      if (diff < 0) return [0, 3];
+      return [1, 1];
+    }
+
+    function renderMatches() {
+      matchesContainer.innerHTML = '';
+      matchesData.forEach(match => {
+        const { home, away, id, diff } = match;
+        const { home: homeGoals, away: awayGoals } = resultScore(diff);
+        const [homePts, awayPts] = matchPoints(diff);
+
+        const card = document.createElement('article');
+        card.className = 'match-card';
+        card.innerHTML = `
+          <div class="match-title">
+            <div class="teams">${home} vs ${away}</div>
+            <div class="match-meta">Goal difference: <strong id="${id}-diff-value">${diff}</strong></div>
+          </div>
+          <div class="scoreboard">
+            <div class="score" id="${id}-score">${homeGoals} - ${awayGoals}</div>
+            <div class="match-meta">Score is shown as a representative result with the selected goal difference.</div>
+          </div>
+          <div class="slider-row">
+            <input type="range" id="${id}-slider" min="-10" max="10" step="1" value="${diff}" aria-label="${home} vs ${away} goal difference slider" />
+           </div>
+          <div class="points-row">
+            <div class="team-box">
+              <div class="team-name">${home}</div>
+              <div class="points" id="${id}-home-points">${homePts} pts</div>
+            </div>
+            <div class="team-box">
+              <div class="team-name">${away}</div>
+              <div class="points" id="${id}-away-points">${awayPts} pts</div>
+            </div>
+          </div>
+        `;
+
+        matchesContainer.appendChild(card);
+
+        const slider = document.getElementById(`${id}-slider`);
+        slider.addEventListener('input', () => {
+          match.diff = Number(slider.value);
+          updateMatch(match);
+          updateSummary();
+          updateGroupSummary();
+          updateBestThirdSummary();
+        });
+      });
+    }
+
+    function updateMatch(match) {
+      const { id, diff } = match;
+      const { home, away } = resultScore(diff);
+      const [homePts, awayPts] = matchPoints(diff);
+      document.getElementById(`${id}-diff-value`).textContent = diff;
+      document.getElementById(`${id}-score`).textContent = `${home} - ${away}`;
+      document.getElementById(`${id}-home-points`).textContent = `${homePts} pts`;
+      document.getElementById(`${id}-away-points`).textContent = `${awayPts} pts`;
+    }
+
+    function updateSummary() {
+      const totals = {};
+      matchesData.forEach(match => {
+        const [homePts, awayPts] = matchPoints(match.diff);
+        totals[match.home] = (totals[match.home] || 0) + homePts;
+        totals[match.away] = (totals[match.away] || 0) + awayPts;
       });
 
-      video.srcObject = stream;
+      pointsSummary.innerHTML = Object.entries(totals)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .map(([team, pts]) => `
+          <tr>
+            <td>${team}</td>
+            <td>${pts} pts</td>
+          </tr>
+        `)
+        .join('');
+    }
 
-      await new Promise((resolve) => {
-        video.onloadedmetadata = () => {
-          video.play();
-        };
+    function updateBestThirdSummary() {
+      const totals = bestThirdPlacesData.map(entry => ({ ...entry }));
 
-        video.oncanplay = () => {
-          if (video.videoWidth > 0 && video.videoHeight > 0) {
-            cameraReady = true;
-            resolve();
+      matchesData.forEach(match => {
+        const { home: homeGoals, away: awayGoals } = resultScore(match.diff);
+        totals.forEach(team => {
+          if (team.team === match.home) {
+            const [homePts] = matchPoints(match.diff);
+            team.points += homePts;
+            team.gd += match.diff;
+            team.gf += homeGoals;
+            team.ga += awayGoals;
+            team.games += 1;
           }
-        };
+          if (team.team === match.away) {
+            const [, awayPts] = matchPoints(match.diff);
+            team.points += awayPts;
+            team.gd -= match.diff;
+            team.gf += awayGoals;
+            team.ga += homeGoals;
+            team.games += 1;
+          }
+        });
       });
 
-      statusEl.textContent = "Camera ready. Align the code inside the green box.";
+      bestThirdSummary.innerHTML = totals
+        .sort((a, b) => b.points - a.points || b.gd - a.gd || b.gf - a.gf || a.team.localeCompare(b.team))
+        .map(({ team, games, points, gd, gf, ga }) => `
+          <tr>
+            <td>${team}</td>
+            <td>${games}</td>
+            <td>${points}</td>
+            <td>${gd > 0 ? '+' + gd : gd}</td>
+            <td>${gf}</td>
+            <td>${ga}</td>
+          </tr>
+        `)
+        .join('');
     }
 
-    async function initOCR() {
-      statusEl.textContent = "Loading OCR engine…";
+    function updateGroupSummary() {
+      const groupTotals = key => {
+        const totals = {};
+        Object.entries(groupData[key]).forEach(([team, data]) => {
+          totals[team] = { points: data.initialPoints, gd: data.initialGD };
+        });
 
-      worker = await Tesseract.createWorker("eng");
+        matchesData.forEach(match => {
+          const [homePts, awayPts] = matchPoints(match.diff);
+          const homeTotals = totals[match.home];
+          const awayTotals = totals[match.away];
+          if (homeTotals) {
+            homeTotals.points += homePts;
+            homeTotals.gd += match.diff;
+          }
+          if (awayTotals) {
+            awayTotals.points += awayPts;
+            awayTotals.gd -= match.diff;
+          }
+        });
 
-      await worker.setParameters({
-        tessedit_char_whitelist: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        tessedit_pageseg_mode: "7"
-      });
+        return Object.entries(totals)
+          .sort((a, b) => b[1].points - a[1].points || b[1].gd - a[1].gd || a[0].localeCompare(b[0]));
+      };
 
-      statusEl.textContent = "OCR ready.";
+      groupISummary.innerHTML = groupTotals('I')
+        .map(([team, data]) => `
+          <tr>
+            <td>${team}</td>
+            <td>${data.points} pts</td>
+            <td>${data.gd > 0 ? '+' + data.gd : data.gd}</td>
+          </tr>
+        `)
+        .join('');
+
+      groupHSummary.innerHTML = groupTotals('H')
+        .map(([team, data]) => `
+          <tr>
+            <td>${team}</td>
+            <td>${data.points} pts</td>
+            <td>${data.gd > 0 ? '+' + data.gd : data.gd}</td>
+          </tr>
+        `)
+        .join('');
     }
 
-    function captureScanRegion() {
-      const videoWidth = video.videoWidth;
-      const videoHeight = video.videoHeight;
-
-      if (!videoWidth || !videoHeight) {
-        throw new Error("Video is not ready yet.");
-      }
-
-      /*
-        This crop roughly matches the green box:
-        right/top corner area where the card code is expected.
-        Adjust these numbers if your code is in a different position.
-      */
-      const cropX = videoWidth * 0.48;
-      const cropY = videoHeight * 0.05;
-      const cropW = videoWidth * 0.46;
-      const cropH = videoHeight * 0.16;
-
-      canvas.width = cropW;
-      canvas.height = cropH;
-
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-
-      ctx.drawImage(
-        video,
-        cropX,
-        cropY,
-        cropW,
-        cropH,
-        0,
-        0,
-        cropW,
-        cropH
-      );
-
-      /*
-        Basic contrast boost for OCR.
-      */
-      const imageData = ctx.getImageData(0, 0, cropW, cropH);
-      const data = imageData.data;
-
-      for (let i = 0; i < data.length; i += 4) {
-        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        const boosted = avg > 140 ? 255 : 0;
-        data[i] = boosted;
-        data[i + 1] = boosted;
-        data[i + 2] = boosted;
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-
-      return canvas;
-    }
-
-    async function scanOnce() {
-      if (scanning) return;
-      
-      if (!cameraReady || video.videoWidth === 0 || video.videoHeight === 0) {
-        statusEl.textContent = "Camera still warming up. Try again in a moment.";
-        return;
-      }
-
-      if (!worker) {
-        statusEl.textContent = "OCR not ready yet.";
-        return;
-      }
-
-      scanning = true;
-      statusEl.textContent = "Scanning…";
-
-      try {
-        const scanImage = captureScanRegion();
-        const result = await worker.recognize(scanImage);
-        const rawText = result.data.text || "";
-        const code = normalizeCode(rawText);
-
-        if (code) {
-          addCode(code);
-        } else {
-          statusEl.textContent = `No valid code found. Expected ARG1 or FRA12 format. OCR saw: "${rawText.trim()}"`;
-        }
-      } catch (err) {
-        statusEl.textContent = `Scan error: ${err.message}`;
-      } finally {
-        scanning = false;
-      }
-    }
-
-    async function autoScanLoop() {
-      while (autoScanning) {
-        await scanOnce();
-        await new Promise(resolve => setTimeout(resolve, 1200));
-      }
-    }
-
-    scanBtn.addEventListener("click", scanOnce);
-
-    autoBtn.addEventListener("click", () => {
-      autoScanning = !autoScanning;
-
-      if (autoScanning) {
-        autoBtn.textContent = "Stop auto-scan";
-        autoBtn.classList.remove("secondary");
-        autoScanLoop();
-      } else {
-        autoBtn.textContent = "Start auto-scan";
-        autoBtn.classList.add("secondary");
-      }
-    });
-
-    copyBtn.addEventListener("click", async () => {
-      await navigator.clipboard.writeText(codes.join("\n"));
-      statusEl.textContent = "Copied list to clipboard.";
-    });
-
-    downloadBtn.addEventListener("click", () => {
-      const csv = "code\n" + codes.map(code => `"${code}"`).join("\n");
-      const blob = new Blob([csv], { type: "text/csv" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "card-codes.csv";
-      a.click();
-
-      URL.revokeObjectURL(url);
-    });
-
-    clearBtn.addEventListener("click", () => {
-      if (!confirm("Clear all scanned codes?")) return;
-      codes = [];
-      saveCodes();
-      lastCodeEl.textContent = "—";
-      statusEl.textContent = "List cleared.";
-    });
-
-    saveCodes();
-
-    Promise.all([
-      initCamera(),
-      initOCR()
-    ]).catch(err => {
-      statusEl.textContent = err.message;
-    });
+    renderMatches();
+    updateSummary();
+    updateGroupSummary();
+    updateBestThirdSummary();
   </script>
 </body>
 </html>
